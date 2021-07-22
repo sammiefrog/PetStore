@@ -10,10 +10,15 @@ function App() {
     handleSearch();
   }, []);
 
-  const handleSearch = async () => {
+  const handleSearch = async (event) => {
+    // event.preventDefault();
+
     try {
       const availablePets = await getAvailablePets("available");
-      setCurrentPets(availablePets);
+      const limitedPets = await availablePets.slice(0, 20);
+      console.log(limitedPets);
+      setCurrentPets(limitedPets);
+
       console.log(currentPets);
     } catch (err) {
       console.log(err);
