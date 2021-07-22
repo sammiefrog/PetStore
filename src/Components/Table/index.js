@@ -15,33 +15,36 @@ const useStyles = makeStyles({
 });
 
 
-export default function BasicTable() {
-  const classes = useStyles();
+export default function BasicTable(props) {
+    const classes = useStyles();
+    
+        // useEffect(() => {
+        //   getAvailPets();
+        // }, []);
+    
 
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+            <TableCell>Pet Name</TableCell>
+            <TableCell align="right">Photo</TableCell>
+            <TableCell align="right">Status</TableCell>
+            <TableCell align="right">Category</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {/* {rows.map((row) => (
-            <TableRow key={row.name}>
+          {props.pets.map((pet, i) => (
+            <TableRow key={i}>
               <TableCell component="th" scope="row">
-                {row.name}
+                {pet.name}
               </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
+              <TableCell align="right">{pet.photoUrls[0]}</TableCell>
+              <TableCell align="right">{pet.status}</TableCell>
+              <TableCell align="right">{pet.category}</TableCell>
             </TableRow>
-          ))} */}
+          ))}
         </TableBody>
       </Table>
     </TableContainer>
