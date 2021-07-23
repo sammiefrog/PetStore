@@ -12,6 +12,7 @@ function App() {
 
   const handleSearch = async (event) => {
     // event.preventDefault();
+    setCurrentPets([]);
 
     try {
       const availablePets = await getAvailablePets("available");

@@ -17,11 +17,6 @@ const useStyles = makeStyles({
 
 export default function BasicTable(props) {
     const classes = useStyles();
-    
-        // useEffect(() => {
-        //   getAvailPets();
-        // }, []);
-    
 
   return (
     <TableContainer component={Paper}>
@@ -40,9 +35,9 @@ export default function BasicTable(props) {
               <TableCell component="th" scope="row">
                 {pet.name}
               </TableCell>
-              <TableCell align="right">{pet.photoUrls[0]}</TableCell>
+              <TableCell align="right"><img src={`https://placedog.net/50/50?id=${i+1}`} alt="placeholder dog"/></TableCell>
               <TableCell align="right">{pet.status}</TableCell>
-              <TableCell align="right">{pet.category}</TableCell>
+              <TableCell align="right">{pet.category.name}</TableCell>
             </TableRow>
           ))}
         </TableBody>
