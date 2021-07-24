@@ -20,13 +20,10 @@ function App() {
   }, [currentPets]);
 
   const handleSearch = async (status) => {
-    //reset current pets before searching
-    // setCurrentPets([]);
-          // const status = event.target.dataset.status;
-          console.log(status);
-          setSelectedStatus(status);
-
     try {
+      //setting petStatus to the status of the button clicked
+      setSelectedStatus(status);
+
       const selectedPets = await getSelectedPets(status);
       setCurrentPets(selectedPets);
 

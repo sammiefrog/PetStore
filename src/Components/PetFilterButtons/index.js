@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
     "& > *": {
       margin: theme.spacing(1),
     },
-    justifyContent: 'center'
+    textAlign: "center"
   },
 }));
 
@@ -19,7 +19,6 @@ export default function ContainedButtons(props) {
       <Button
         variant="contained"
         color="secondary"
-        data-status="available"
         onClick={() => props.handleSearch("available")}
       >
         Available
@@ -27,7 +26,6 @@ export default function ContainedButtons(props) {
       <Button
         variant="contained"
         color="primary"
-        data-status="sold"
         onClick={() => props.handleSearch("sold")}
       >
         Sold
@@ -35,7 +33,6 @@ export default function ContainedButtons(props) {
       <Button
         variant="contained"
         color="secondary"
-        data-status="pending"
         onClick={() => props.handleSearch("pending")}
       >
         Pending
