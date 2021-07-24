@@ -1,24 +1,34 @@
 import React, { useState, useEffect } from "react";
 import AppBar from "./Components/AppBar";
 import Table from "./Components/Table";
-import {getAvailablePets} from "./utils/API";
+import PetFilterButtons from './Components/PetFilterButtons';
+import Container from '@material-ui/core/Container';
+import {getSelectedPets} from "./utils/API";
 
 function App() {
   const [currentPets, setCurrentPets] = useState([]);
+  const [selectedStatus, setSelectedStatus] = useState("");
+  const [limitedPets, setLimitedPets] = useState([]);
 
   useEffect(() => {
-    handleSearch();
-  }, []);
+    //limiting number of pets displayed
+    if (currentPets !== []) {
+        const slicedPets = currentPets.slice(0, 20);
+        console.log(slicedPets);
+        setLimitedPets(slicedPets);
+    }
+  }, [currentPets]);
 
-  const handleSearch = async (event) => {
-    // event.preventDefault();
-    setCurrentPets([]);
+  const handleSearch = async (status) => {
+    //reset current pets before searching
+    // setCurrentPets([]);
+          // const status = event.target.dataset.status;
+          console.log(status);
+          setSelectedStatus(status);
 
     try {
-      const availablePets = await getAvailablePets("available");
-      const limitedPets = await availablePets.slice(0, 20);
-      console.log(limitedPets);
-      setCurrentPets(limitedPets);
+      const selectedPets = await getSelectedPets(status);
+      setCurrentPets(selectedPets);
 
       console.log(currentPets);
     } catch (err) {
@@ -29,7 +39,10 @@ function App() {
   return (
     <div className="App">
       <AppBar />
-      <Table pets={currentPets} />
+      <Container>
+        <PetFilterButtons handleSearch={handleSearch} />
+        <Table pets={limitedPets} petStatus={selectedStatus} />
+      </Container>
     </div>
   );
 }
