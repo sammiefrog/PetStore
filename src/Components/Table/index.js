@@ -42,11 +42,9 @@ export default function BasicTable(props) {
   //instantiating petTable to be assigned later based on selected status
   let petTable;
 
-  const markAsSold = async (event) => {
+  const markAsSold = async (petId, petName) => {
     try {
-      //targeting the pets' id and name
-      const petId = event.currentTarget.dataset.id;
-      const petName = event.currentTarget.dataset.name;
+      
       //finding the pet by ID
       const petToUpdate = await findPetToUpdate(petId);
       console.log(petToUpdate)
@@ -104,7 +102,7 @@ export default function BasicTable(props) {
                 </TableCell>
                 <TableCell align="right">{pet.status}</TableCell>
                 <TableCell align="right">
-                  <ShopButton id={pet.id} petName={pet.name} markAsSold={markAsSold} />
+                  <ShopButton markAsSold={markAsSold} {...pet} />
                 </TableCell>
               </TableRow>
             ))}

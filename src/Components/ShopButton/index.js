@@ -2,8 +2,8 @@ import React from "react";
 import ShopIcon from "@material-ui/icons/Shop";
 import Button from "@material-ui/core/Button";
 
-export default function ShopButton(props) {
+export default function ShopButton({id, name, markAsSold}) {
     return (
-        <Button variant="outlined" color="secondary" data-id={props.id} data-name={props.petName} onClick={props.markAsSold}><ShopIcon /></Button>
+        <Button variant="outlined" color="secondary" onClick={(e)=> markAsSold(id, name)}><ShopIcon /></Button>
     );
 }
