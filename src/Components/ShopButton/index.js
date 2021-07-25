@@ -4,6 +4,6 @@ import Button from "@material-ui/core/Button";
 
 export default function ShopButton(props) {
     return (
-        <Button variant="outlined" color="secondary" data-id={props.id} onClick={props.markAsSold}><ShopIcon /></Button>
+        <Button variant="outlined" color="secondary" data-id={props.id} data-name={props.petName} onClick={props.markAsSold}><ShopIcon /></Button>
     );
 }

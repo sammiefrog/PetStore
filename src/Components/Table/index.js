@@ -44,8 +44,9 @@ export default function BasicTable(props) {
 
   const markAsSold = async (event) => {
     try {
-      //targeting the pets' id
+      //targeting the pets' id and name
       const petId = event.currentTarget.dataset.id;
+      const petName = event.currentTarget.dataset.name;
       //finding the pet by ID
       const petToUpdate = await findPetToUpdate(petId);
       console.log(petToUpdate)
@@ -55,7 +56,7 @@ export default function BasicTable(props) {
       const updatedPet = await updatePetStatus(petToUpdate);
       console.log(updatedPet);
       //setting message for alert & opening alert
-      setMessage(`${updatedPet.name} has been sold!`);
+      setMessage(`${petName} has been sold!`);
       setOpen(true);
 
     } catch (error) {
@@ -79,9 +80,9 @@ export default function BasicTable(props) {
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>ID#</TableCell>
-              <TableCell>Pet Name</TableCell>
               <TableCell align="right">Photo</TableCell>
+              <TableCell>Pet Name</TableCell>
+              <TableCell>ID#</TableCell>
               <TableCell align="right">Status</TableCell>
               <TableCell align="right">Mark As Sold</TableCell>
             </TableRow>
@@ -89,20 +90,22 @@ export default function BasicTable(props) {
           <TableBody>
             {props.pets.map((pet, i) => (
               <TableRow key={i}>
-                <TableCell component="th" scope="row" data-id={pet.id}>
-                  {pet.id}
-                </TableCell>
-                <TableCell component="th" scope="row">
-                  {pet.name}
-                </TableCell>
                 <TableCell align="right">
                   <img
                     src={`https://placedog.net/50/50?id=${i + 1}`}
                     alt="placeholder dog"
                   />
                 </TableCell>
+                <TableCell component="th" scope="row">
+                  {pet.name}
+                </TableCell>
+                <TableCell component="th" scope="row" data-id={pet.id}>
+                  {pet.id}
+                </TableCell>
                 <TableCell align="right">{pet.status}</TableCell>
-                <TableCell align="right"><ShopButton id={pet.id} markAsSold={markAsSold}/></TableCell>
+                <TableCell align="right">
+                  <ShopButton id={pet.id} petName={pet.name} markAsSold={markAsSold} />
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -114,7 +117,12 @@ export default function BasicTable(props) {
       //if no pets are pending, display a message instead of the table
       props.pets.length === 0
         ? (petTable = (
-          <Typography className={classes.typography} variant="h4" component="h2" gutterBottom>
+            <Typography
+              className={classes.typography}
+              variant="h4"
+              component="h2"
+              gutterBottom
+            >
               No pending pets at this time!
             </Typography>
           ))
@@ -122,8 +130,8 @@ export default function BasicTable(props) {
             <Table className={classes.table} aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell>Pet Name</TableCell>
-                  <TableCell align="right">Photo</TableCell>
+                  <TableCell>Photo</TableCell>
+                  <TableCell align="right">Pet Name</TableCell>
                   <TableCell align="right">Status</TableCell>
                   <TableCell align="right">Category</TableCell>
                 </TableRow>
@@ -132,14 +140,12 @@ export default function BasicTable(props) {
                 {props.pets.map((pet, i) => (
                   <TableRow key={i}>
                     <TableCell component="th" scope="row">
-                      {pet?.name}
-                    </TableCell>
-                    <TableCell align="right">
                       <img
                         src={`https://placedog.net/50/50?id=${i + 1}`}
                         alt="placeholder dog"
                       />
                     </TableCell>
+                    <TableCell align="right">{pet?.name}</TableCell>
                     <TableCell align="right">{pet?.status}</TableCell>
                     <TableCell align="right">{pet?.category?.name}</TableCell>
                   </TableRow>
@@ -154,8 +160,8 @@ export default function BasicTable(props) {
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Pet Name</TableCell>
-              <TableCell align="right">Photo</TableCell>
+              <TableCell>Photo</TableCell>
+              <TableCell align="right">Pet Name</TableCell>
               <TableCell align="right">Status</TableCell>
               <TableCell align="right">Category</TableCell>
             </TableRow>
@@ -164,14 +170,13 @@ export default function BasicTable(props) {
             {props.pets.map((pet, i) => (
               <TableRow key={i}>
                 <TableCell component="th" scope="row">
-                  {pet?.name}
-                </TableCell>
-                <TableCell align="right">
                   <img
                     src={`https://placedog.net/50/50?id=${i + 1}`}
                     alt="placeholder dog"
                   />
                 </TableCell>
+                <TableCell align="right">{pet?.name}</TableCell>
+
                 <TableCell align="right">{pet?.status}</TableCell>
                 <TableCell align="right">{pet?.category?.name}</TableCell>
               </TableRow>
