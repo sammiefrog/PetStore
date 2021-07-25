@@ -22,7 +22,8 @@ A simple react application thats displays and manipulates tabular data retrived 
  React, Material-UI, Axios, Swagger PetStore API
   
 <h2 id= "usage">Usage</h2>
-To view and maintain pet data from the Swagger PetStore API.
+<li>Click on one of the pet status buttons to view pets in that category: *Available*, *Sold*, or *Pending*</li>
+<li>If a pet is listed as *Available*, you can change their status to *Sold* by clicking on the shopping icon under the *Mark As Sold* column. </li>
 
 <h2 id="screenshots">Screenshots</h2>
 <img src="./public/images/petstore.png" alt="still photo of working application">
