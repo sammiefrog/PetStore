@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.js": "/PetStore/static/js/main.37a5ed81.chunk.js",
+    "main.js.map": "/PetStore/static/js/main.37a5ed81.chunk.js.map",
+    "runtime-main.js": "/PetStore/static/js/runtime-main.e5b6e70c.js",
+    "runtime-main.js.map": "/PetStore/static/js/runtime-main.e5b6e70c.js.map",
+    "static/js/2.b185fe31.chunk.js": "/PetStore/static/js/2.b185fe31.chunk.js",
+    "static/js/2.b185fe31.chunk.js.map": "/PetStore/static/js/2.b185fe31.chunk.js.map",
+    "index.html": "/PetStore/index.html",
+    "static/js/2.b185fe31.chunk.js.LICENSE.txt": "/PetStore/static/js/2.b185fe31.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e5b6e70c.js",
+    "static/js/2.b185fe31.chunk.js",
+    "static/js/main.37a5ed81.chunk.js"
+  ]
+}
