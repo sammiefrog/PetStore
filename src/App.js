@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import AppBar from "./Components/AppBar";
+import Header from "./Components/Header";
 import Table from "./Components/Table";
 import PetFilterButtons from './Components/PetFilterButtons';
 import Container from '@material-ui/core/Container';
+import Footer from './Components/Footer';
 import {getSelectedPets} from "./utils/API";
 
 function App() {
@@ -35,11 +36,12 @@ function App() {
 
   return (
     <div className="App">
-      <AppBar />
+      <Header />
       <Container>
         <PetFilterButtons handleSearch={handleSearch} />
         <Table pets={limitedPets} petStatus={selectedStatus} />
       </Container>
+      <Footer />
     </div>
   );
 }
