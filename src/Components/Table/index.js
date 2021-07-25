@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+//material ui styles and components
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -7,11 +8,14 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import { updatePetStatus, findPetToUpdate } from "../../utils/API";
-import ShopButton from "../ShopButton";
 import MuiAlert from "@material-ui/lab/Alert";
 import Snackbar from "@material-ui/core/Snackbar";
 import Typography from '@material-ui/core/Typography';
+//custom components
+import ShopButton from "../ShopButton";
+//api
+import { updatePetStatus, findPetToUpdate } from "../../utils/API";
+
 
 const useStyles = makeStyles({
   table: {
@@ -31,23 +35,29 @@ function Alert(props) {
 
 export default function BasicTable(props) {
   const classes = useStyles();
+
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("")
 
+  //instantiating petTable to be assigned later based on selected status
   let petTable;
 
   const markAsSold = async (event) => {
     try {
+      //targeting the pets' id
       const petId = event.currentTarget.dataset.id;
-      console.log(petId);
+      //finding the pet by ID
       const petToUpdate = await findPetToUpdate(petId);
-      console.log(petToUpdate);
+      console.log(petToUpdate)
+      //updating pets status to sold
       petToUpdate.status = "sold";
+      //using a PUT request to update pet
       const updatedPet = await updatePetStatus(petToUpdate);
       console.log(updatedPet);
+      //setting message for alert & opening alert
       setMessage(`${updatedPet.name} has been sold!`);
       setOpen(true);
-      
+
     } catch (error) {
       console.log(error);
     }
@@ -62,6 +72,7 @@ export default function BasicTable(props) {
       setOpen(false);
     };
 
+  //displaying the table differently based on selected pet status
   switch (props.petStatus) {
     case "available":
       petTable = (
@@ -100,6 +111,7 @@ export default function BasicTable(props) {
       break;
 
     case "pending":
+      //if no pets are pending, display a message instead of the table
       props.pets.length === 0
         ? (petTable = (
           <Typography className={classes.typography} variant="h4" component="h2" gutterBottom>

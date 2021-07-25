@@ -11,7 +11,7 @@ const useStyles = makeStyles({
     padding: 1,
     justifyContent: "flex-center",
     alignItems: "center",
-        bottom: 0,
+    bottom: 0,
     margin: 10
     },
     typography: {
@@ -21,7 +21,6 @@ const useStyles = makeStyles({
         marginRight: 5,
         marginLeft: 5
     }
-
 });
 
 export default function Footer() {
