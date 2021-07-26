@@ -14,7 +14,7 @@ import Typography from '@material-ui/core/Typography';
 //custom components
 import ShopButton from "../ShopButton";
 //api
-import { updatePetStatus, findPetToUpdate } from "../../utils/API";
+import { updatePetStatus } from "../../utils/API";
 
 
 const useStyles = makeStyles({
@@ -37,24 +37,22 @@ export default function BasicTable(props) {
   const classes = useStyles();
 
   const [open, setOpen] = useState(false);
-  const [message, setMessage] = useState("")
+  const [message, setMessage] = useState("");
+
 
   //instantiating petTable to be assigned later based on selected status
   let petTable;
 
-  const markAsSold = async (petId, petName) => {
+  const markAsSold = async (petToUpdate) => {
     try {
-      
-      //finding the pet by ID
-      const petToUpdate = await findPetToUpdate(petId);
-      console.log(petToUpdate)
       //updating pets status to sold
       petToUpdate.status = "sold";
       //using a PUT request to update pet
       const updatedPet = await updatePetStatus(petToUpdate);
+      //leaving this console log to see updated pet object
       console.log(updatedPet);
       //setting message for alert & opening alert
-      setMessage(`${petName} has been sold!`);
+      setMessage(`${petToUpdate.name} has been sold!`);
       setOpen(true);
 
     } catch (error) {
@@ -102,7 +100,7 @@ export default function BasicTable(props) {
                 </TableCell>
                 <TableCell align="right">{pet.status}</TableCell>
                 <TableCell align="right">
-                  <ShopButton markAsSold={markAsSold} {...pet} />
+                  <ShopButton markAsSold={markAsSold} pet={pet} />
                 </TableCell>
               </TableRow>
             ))}
@@ -174,7 +172,6 @@ export default function BasicTable(props) {
                   />
                 </TableCell>
                 <TableCell align="right">{pet?.name}</TableCell>
-
                 <TableCell align="right">{pet?.status}</TableCell>
                 <TableCell align="right">{pet?.category?.name}</TableCell>
               </TableRow>

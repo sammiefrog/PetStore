@@ -19,7 +19,6 @@ function App() {
     //limiting number of pets displayed
     if (currentPets !== []) {
         const slicedPets = currentPets.slice(0, 20);
-        console.log(slicedPets);
         setLimitedPets(slicedPets);
     }
   }, [currentPets]);

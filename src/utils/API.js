@@ -7,10 +7,10 @@ export const getSelectedPets = async (requestedStatus) => {
   return response.data;
 };
 
-export const findPetToUpdate = async (petId) => {
-  const response = await axios.get(`https://petstore.swagger.io/v2/pet/${petId}`);
-  return response.data;
-}
+// export const findPetToUpdate = async (petId) => {
+//   const response = await axios.get(`https://petstore.swagger.io/v2/pet/${petId}`);
+//   return response.data;
+// }
 
 export const updatePetStatus = async (updatedPet) => {
   const response = await axios({
